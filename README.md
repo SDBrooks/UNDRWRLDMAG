@@ -4,7 +4,7 @@
 ***
 ### By: ***Shane Brooks***
 
-[GitHub](https://github.com/SDBrooks) | [LinkedIn](https://www.linkedin.com/in/shane-brooks-86175a228/?trk=people-guest_people_search-card) | [Trello](https://trello.com/b/J2gX8ekr/undrwrld-mag)
+[GitHub](https://github.com/SDBrooks) | [LinkedIn](https://www.linkedin.com/in/shane-brooks-86175a228/?trk=people-guest_people_search-card)
 ***
 
 ### ***Description***
@@ -21,3 +21,6 @@ Created with React and MongoDB.
 " UNDERWRLD MAG " ERD![image](https://i.imgur.com/vtPO30y.jpg)
 
 " UNDRWRLD MAG " HIERARCHY ![image](https://i.imgur.com/pMndkxE.jpg)
+
+### ***Credits***
+App Development: [Trello](https://trello.com/b/J2gX8ekr/undrwrld-mag)
