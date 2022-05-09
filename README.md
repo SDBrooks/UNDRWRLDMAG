@@ -19,8 +19,7 @@ Created with React and MongoDB.
 ### ***Getting Started***
 
 
-
-" UNDERWRLD MAG " ERD![image](https://i.imgur.com/vtPO30y.jpg)
+" UNDERWRLD MAG " ERD ![image](https://i.imgur.com/vtPO30y.jpg)
 
 " UNDRWRLD MAG " HIERARCHY ![image](https://i.imgur.com/pMndkxE.jpg)
 
