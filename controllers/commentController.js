@@ -40,8 +40,8 @@ const deleteComment = async (req, res) => {
             return res.status(200).send('Comment Successfully Deleted');
         }
         throw new Error('Comment Not Found');
-    }catch (e) {
-        return res.status(500).sned(error.message);
+    } catch (e) {
+        return res.status(500).send(error.message);
     }
 };
 

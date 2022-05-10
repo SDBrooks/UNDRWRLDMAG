@@ -13,10 +13,6 @@ const createPicture = async (req, res) => {
     }
 }
 
-
-
-
-
 const getAllPictures = async (req, res) => {
     try {
         const pictures = await Picture.findAll()
@@ -24,4 +20,33 @@ const getAllPictures = async (req, res) => {
     } catch (e) {
         throw error;
     }
+}
+
+const updatePicture = async (req, res) => {
+    try {
+        const { id } = req.params;
+        await Picture.findByIdAndUpdate(id, req.body, { new: true}, (err, comment) => {
+            return res.status(200).json(data);
+        });
+    } catch (error) {}
+}
+
+const deletePicture = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deleted = await Picture.findByIdAndDelete(id);
+        if (deleted) {
+            return res.status(200).send('Image Deleted');
+        }
+        throw new Error('Image Not Found');
+    } catch (e) {
+        return res.status(500).send(error.message)
+    }
+};
+
+module.exports = {
+    createPicture,
+    getAllPictures,
+    updatePicture,
+    deletePicture
 }
