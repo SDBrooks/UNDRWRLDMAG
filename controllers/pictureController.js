@@ -21,6 +21,19 @@ const getAllPictures = async (req, res) => {
         throw error;
     }
 }
+const getPictureById = async (req, res) => {
+    try { 
+        const { id } = req.params;
+        const picture = await Picture.findById(id);
+        if (picture) {
+            return res.status(200).json({ picture })
+        }
+        return res.status(404).send('Picture with the specified ID does not exist')
+    } catch (error) {
+        return res.status(500).send(error.message)
+    }
+}
+
 
 const updatePicture = async (req, res) => {
     try {
@@ -48,5 +61,6 @@ module.exports = {
     createPicture,
     getAllPictures,
     updatePicture,
-    deletePicture
+    deletePicture, 
+    getPictureById
 }

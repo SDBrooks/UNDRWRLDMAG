@@ -4,7 +4,7 @@ const controllers = require('../controllers/pictureController');
 
 router.get('/pictures', controllers.getAllPictures)
 
-
+router.get('/pictures/:id', controllers.getPictureById)
 
 router.post('/pictures', controllers.createPicture)
 
