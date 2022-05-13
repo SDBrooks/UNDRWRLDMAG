@@ -1,5 +1,5 @@
-import { createContext } from "react";
+// import { createContext } from "react";
 
-export const PicturesContext = createContext(null)
+// export const PicturesContext = createContext(null)
 
-export const CommentsContext = createContext(null)
+// export const CommentsContext = createContext(null)
