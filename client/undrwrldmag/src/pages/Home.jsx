@@ -3,11 +3,12 @@ import axios from "axios";
 import Pictures from "../components/Pictures";
 import Comments from '../components/Comments'
 import { useState, useEffect } from 'react'
+import Crud from "../components/Crud";
 
 const Home = (props) => {
     
      console.log(props.comments)
-   
+
     if (props.pictures && props.comments)
      return (
         <div>
@@ -82,5 +83,7 @@ const Home = (props) => {
 {/*                    
        <h4> {props.coverArt}</h4>
        <h5> {props.description}</h5> */}
+
+       
        
        
