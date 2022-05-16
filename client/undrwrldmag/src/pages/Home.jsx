@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import Pictures from "../components/Pictures";
 import Comments from '../components/Comments'
+import '../components/style/Home.css'
 import { useState, useEffect } from 'react'
 import Crud from "../components/Crud";
 
@@ -13,26 +14,21 @@ const Home = (props) => {
      return (
         <div>
          {/* <h1> Home </h1> */}
-            <div>
+            <div className="cover-art">
                  {props.pictures.map((picture) => (
             <Pictures 
             coverArt = {picture.coverArt}
             description = {picture.description}/>
                  ))}
+                 <div className="comments">
                  {props.comments.map((comment) => (
                      <Comments 
                      name = {comment.name}
                      description = {comment.description}/>
                  ))}
-                
-                {/* <h5>{props.pictures}</h5>
-                <h6>{props.comments}</h6> */}
-                {/* <img classname="home-image" src={props.pictures.coverArt} alt="null"/> */}
+              </div>
             </div>
-                
-                 
-        
-                </div>
+         </div>
     )
     };
 

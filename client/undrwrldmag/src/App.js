@@ -59,10 +59,12 @@ return (
       <h1> + UNDRWRLD MAG + </h1>
       <Home  pictures={pictures}
       comments={comments}/> 
+      <div className='buttons'>
       <button name='create-comment' onClick={() => createComment(comments)}> Add Comment </button>
       <button name='view-comments' onClick={() => getAllComments(comments)}> View Comments </button>
       <button name='update-comment' onClick={() => updateComment(comments)}> Edit Comment </button>
       <button name='delete-comment' onClick={() => deleteComment(comments)}> Delete Comment </button>
+      </div>
 
 </div>
    
