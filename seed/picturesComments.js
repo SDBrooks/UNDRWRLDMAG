@@ -5,13 +5,13 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
 const main = async () => {
     const picture1 = await new Picture({
-        coverArt: 'https://i.imgur.com/SfluVcx.jpg',
+        coverArt: 'https://i.imgur.com/tZnJyUM.jpg',
         description: ' "Lord Forgive Me" Out Now! Stream it on Apple Music. '
     })
     picture1.save()
 
     const picture2 = await new Picture({
-        coverArt: 'https://i.imgur.com/dIR51Ui.jpg',
+        coverArt: 'https://i.imgur.com/orCjbad.jpg',
         description: ' Newest single, "OMS" streaming on SoundCloud. '
     })
     picture2.save()

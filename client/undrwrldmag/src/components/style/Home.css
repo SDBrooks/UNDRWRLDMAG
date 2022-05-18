@@ -1,8 +1,9 @@
-.cover-art {
+.cover-art-card {
     display: block;
     margin-left: auto;
     margin-right: auto;
     padding: 45px;
+    
 }
 
 .comments {

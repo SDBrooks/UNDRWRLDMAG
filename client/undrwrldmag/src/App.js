@@ -1,13 +1,15 @@
 import axios from 'axios';
 import './App.css';
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom'
 import Home from './pages/Home';
 import Pictures from './components/Pictures';
+
 
 const BASE_URL = 'http://localhost:3001'
 
 function App() {
-
+let { id } = useParams()
 const [pictures, setPictures] = useState('')
 const [comments, setComments] = useState('')
 
@@ -27,30 +29,43 @@ useEffect(() => {
   }
   getComments()
 }, [])
-console.log(comments, pictures)
+// console.log(comments, pictures)
 
 // CRUD FUNCTIONALITY 
 
-const createComment = async (e) => {
+const createComment = async (e, comments) => {
   //e.preventDefault();
-  await axios.post(`${BASE_URL}/comments`)
+  await axios.post(`${BASE_URL}/comments/create`, comments)
 }
 
-const getAllComments = async () => {
+const getAllComments = async (e) => {
+  e.preventDefault();
   const res = await axios.get(`${BASE_URL}/comments`);
   setComments(res.data.comments)
+// useEffect(() => {
+//   const getComments = comments.find((comments) => comments.id === parseInt(id)
+// )
+// setComments(getComments)
+
+// }, [])
 }
 
-const updateComment = async (e) => {
+const updateComment = async (e, comments) => {
   e.preventDefault();
-  axios.put(`${BASE_URL}/comments/:id${e.id}`)
+  axios.put(`${BASE_URL}/comments/${comments.id}`)
 }
 
-const deleteComment = async (e) => {
+const deleteComment = async (e, comments) => {
   // e.preventDefault();
-  await axios.delete(`${BASE_URL}/comments/:id${e.id}`)
+  await axios.delete(`${BASE_URL}/comments/${comments.id}`)
   window.location.reload();
 };
+
+// const dummy = {
+//    name: "Demo",
+//    description: "Test comment",
+//    image:"6279a9fe564299e203a90e40"
+//   }
 
 // CRUD FUNCTIONALITY
   
@@ -60,10 +75,13 @@ return (
       <Home  pictures={pictures}
       comments={comments}/> 
       <div className='buttons'>
-      <button name='create-comment' onClick={() => createComment(comments)}> Add Comment </button>
-      <button name='view-comments' onClick={() => getAllComments(comments)}> View Comments </button>
-      <button name='update-comment' onClick={() => updateComment(comments)}> Edit Comment </button>
-      <button name='delete-comment' onClick={() => deleteComment(comments)}> Delete Comment </button>
+      <button name='create-comment' onClick={(e) => createComment(e, comments)}> Add Comment </button>
+
+      <button name='view-comments' onClick={(e) => getAllComments(e, comments)}> View Comments </button>
+
+      <button name='update-comment' onClick={(e) => updateComment(e, comments)}> Edit Comment </button>
+      
+      <button name='delete-comment' onClick={(e) => deleteComment(e, comments)}> Delete Comment </button>
       </div>
 
 </div>

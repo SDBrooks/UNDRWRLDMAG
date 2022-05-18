@@ -6,7 +6,7 @@ router.get('/comments', controllers.getAllComments);
 
 router.get('/comments/:id', controllers.getCommentById);
 
-router.post('/comments', controllers.createComment);
+// router.post('/comments/create', controllers.createComment);
 
 router.put('/comments/:id', controllers.updateComment);
 
