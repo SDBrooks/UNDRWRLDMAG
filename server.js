@@ -69,7 +69,7 @@ app.put('/comments/:id', async (req, res) => {
         return res.status(200).send('Comment updated')
     }
     throw new Error('Comment not found')
-        } catch (err) {return res.status(500).send(error.message)}
+        } catch (err) {return res.status(500).send(err.message)}
 });
 
 app.delete('/comments/:id', async (req, res) => {

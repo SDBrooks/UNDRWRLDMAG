@@ -35,7 +35,7 @@ useEffect(() => {
 
 const createComment = async (e, comments) => {
   //e.preventDefault();
-  await axios.post(`${BASE_URL}/comments/create`, comments)
+  await axios.post(`${BASE_URL}/comments/create`, e, comments)
 }
 
 const getAllComments = async (e) => {
