@@ -4,14 +4,45 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'
 import Home from './pages/Home';
 import Pictures from './components/Pictures';
+import Comments from './components/Comments';
 
 
 const BASE_URL = 'http://localhost:3001'
 
-function App() {
+function App(props) {
 let { id } = useParams()
-const [pictures, setPictures] = useState('')
-const [comments, setComments] = useState('')
+const [pictures, setPictures] = useState()
+const [comments, setComments] = useState()
+const [formValues, setFormValues] = useState({ name: '', description: '' }) 
+const [creating, setCreating] = useState()
+const [updating, setUpdating] = useState()
+
+const makeComment = (e, id) => {
+  e.preventDefault();
+  setCreating(id)
+}
+
+const makeUpdate = (e, id) => {
+  e.preventDefault();
+  setUpdating(id)
+}
+
+const handleChange = (e) => {
+  setFormValues({ ...formValues, [e.target.name]: e.target.value })
+}
+
+const handleSubmit = (e) => {
+  e.preventDefault(); 
+  createComment(formValues)  
+  setFormValues({ name: '', description: '' })
+  setCreating(false)
+}
+const handleSubmitUp = (e, id) => {
+  e.preventDefault(); 
+  updateComment(e, id, formValues)  
+  setFormValues({ name: '', description: '' })
+  setUpdating(false)
+}
 
 useEffect(() => {
   
@@ -33,9 +64,9 @@ useEffect(() => {
 
 // CRUD FUNCTIONALITY 
 
-const createComment = async (e, comments) => {
+const createComment = async (comments) => {
   //e.preventDefault();
-  await axios.post(`${BASE_URL}/comments/create`, e, comments)
+  await axios.post(`${BASE_URL}/comments/create`, comments)
 }
 
 const getAllComments = async (e) => {
@@ -50,14 +81,14 @@ const getAllComments = async (e) => {
 // }, [])
 }
 
-const updateComment = async (e, comments) => {
+const updateComment = async (e, id, comments) => {
   e.preventDefault();
-  axios.put(`${BASE_URL}/comments/${comments.id}`)
+  axios.put(`${BASE_URL}/comments/${id}`, comments)
 }
 
-const deleteComment = async (e, comments) => {
+const deleteComment = async (e, id) => {
   // e.preventDefault();
-  await axios.delete(`${BASE_URL}/comments/${comments.id}`)
+  await axios.delete(`${BASE_URL}/comments/${id}`)
   window.location.reload();
 };
 
@@ -68,21 +99,85 @@ const deleteComment = async (e, comments) => {
 //   }
 
 // CRUD FUNCTIONALITY
-  
+// if (props.pictures && props.comments)
 return (
    <div className="App">
-      <h1> + UNDRWRLD MAG + </h1>
-      <Home  pictures={pictures}
-      comments={comments}/> 
-      <div className='buttons'>
-      <button name='create-comment' onClick={(e) => createComment(e, comments)}> Add Comment </button>
-
-      <button name='view-comments' onClick={(e) => getAllComments(e, comments)}> View Comments </button>
-
-      <button name='update-comment' onClick={(e) => updateComment(e, comments)}> Edit Comment </button>
       
-      <button name='delete-comment' onClick={(e) => deleteComment(e, comments)}> Delete Comment </button>
+      <h1> + UNDRWRLD MAG + </h1>
+      
+      <div>
+
+{ pictures && comments &&
+  <div className="cover-art-card">
+     {pictures.map((picture) => (
+       <div>
+<Pictures 
+coverArt = {picture.coverArt}
+description = {picture.description}/>
+<button name='makecomment' onClick={(e) => makeComment(e, picture._id)}> Add Comment </button>
+{creating == picture._id && <div className='form'>
+        <form onSubmit={handleSubmit}>
+
+        
+        <input 
+        type="text"
+        name="name"
+        onChange={handleChange}
+        value={formValues.name}/>
+        
+        <input 
+        type="text"
+        name="description"
+        onChange={handleChange}
+        value={formValues.description}/>
+
+        <button type='submit'> Submit </button>
+        
+      </form> 
+     
+      </div>}
+</div>
+     ))}
+     <div className="comments">
+     {comments.map((comment) => (
+       <div>
+       <Comments 
+         name = {comment.name}
+         description = {comment.description}/>
+         
+        { updating == comment._id &&  <form onSubmit={(e) => handleSubmitUp(e, comment._id)}>
+
+        
+        <input 
+        type="text"
+        name="name"
+        onChange={handleChange}
+        value={formValues.name}/>
+        
+        <input 
+        type="text"
+        name="description"
+        onChange={handleChange}
+        value={formValues.description}/>
+
+        <button type='submit'> Submit </button>
+        
+      </form> 
+}
+      <div className='buttons'>
+
+      <button name='update-comment' onClick={(e) => makeUpdate(e, comment._id)}> Edit Comment </button>
+      
+      <button name='delete-comment' onClick={(e) => deleteComment(e, comment._id)}> Delete Comment </button>
       </div>
+      </div>
+     ))}
+
+  </div>
+</div>}
+</div>
+      
+    
 
 </div>
    
