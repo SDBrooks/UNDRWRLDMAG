@@ -2,7 +2,6 @@ import axios from 'axios';
 import './App.css';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'
-import Home from './pages/Home';
 import Pictures from './components/Pictures';
 import Comments from './components/Comments';
 
@@ -73,10 +72,6 @@ const getAllComments = async (e) => {
   e.preventDefault();
   const res = await axios.get(`${BASE_URL}/comments`);
   setComments(res.data.comments)
-// useEffect(() => {
-//   const getComments = comments.find((comments) => comments.id === parseInt(id)
-// )
-// setComments(getComments)
 
 // }, [])
 }
@@ -92,14 +87,8 @@ const deleteComment = async (e, id) => {
   window.location.reload();
 };
 
-// const dummy = {
-//    name: "Demo",
-//    description: "Test comment",
-//    image:"6279a9fe564299e203a90e40"
-//   }
-
 // CRUD FUNCTIONALITY
-// if (props.pictures && props.comments)
+
 return (
    <div className="App">
       

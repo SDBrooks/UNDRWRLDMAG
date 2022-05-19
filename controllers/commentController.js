@@ -1,24 +1,6 @@
-// import { useParams } from 'react-router-dom'
 const res = require('express/lib/response');
 const { Comment } = require('../models/index')
 
-
-// const createComment = async (req, res) => {
-//     try {
-//         console.log(req.body)
-//         const comment = await new Comment(req.body);
-//         await comment.save();
-//         return res.status(201).json({
-//             comment
-
-//         });
-        
-//     } catch (e) {
-//         // console.error(e)
-//         // throw error
-//         throw res.send(req.body);
-//     }
-// }
 
 const getCommentById = async (req, res) => {
     try { 
